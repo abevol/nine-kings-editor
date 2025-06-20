@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Paper,
   Typography,
   Switch,
   FormControlLabel,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   TextField,
   Tooltip,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { NineKingsSettings, KingSettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
 import {
@@ -30,6 +30,8 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
   const kingSettings = parseSerializedValue<{ [key: string]: KingSettings }>(
     settings.KingSettingsDictionary.SerializedValue
   );
+
+  const [selectedKing, setSelectedKing] = useState<string>(Object.keys(kingSettings)[0]);
 
   const handleKingChange = (kingKey: string, field: keyof KingSettings, value: any) => {
     const newKingSettings = {
@@ -73,85 +75,114 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
     });
   };
 
+  const renderKingContent = (kingKey: string, king: KingSettings) => (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, p: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        {getKingTranslation(kingKey)}
+      </Typography>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={king.IsEnabled}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleKingChange(kingKey, 'IsEnabled', e.target.checked)
+            }
+          />
+        }
+        label={getDefaultTranslation('king.enabled')}
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            checked={king.HasVictory}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleKingChange(kingKey, 'HasVictory', e.target.checked)
+            }
+          />
+        }
+        label={getDefaultTranslation('king.hasVictory')}
+      />
+      <TextField
+        label={getDefaultTranslation('king.totalXP')}
+        type="number"
+        value={king.TotalXP}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleKingChange(kingKey, 'TotalXP', parseInt(e.target.value))
+        }
+        fullWidth
+      />
+      <Typography variant="h6" gutterBottom>
+        {getDefaultTranslation('king.perks')}
+      </Typography>
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+        {Object.entries(king.Perks).map(([perkName, perk]) => (
+          <Tooltip
+            key={perkName}
+            title={
+              <Typography style={{ fontSize: '1.0rem', whiteSpace: 'pre-wrap' }}>
+                {getPerkDescriptionTranslation(perkName)}
+              </Typography>
+            }
+            placement="top"
+            arrow
+          >
+            <TextField
+              label={getPerkTranslation(perkName)}
+              type="number"
+              value={perk.Level}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handlePerkChange(kingKey, perkName, parseInt(e.target.value))
+              }
+              fullWidth
+              inputProps={{ min: 0, max: 3 }}
+              InputLabelProps={{
+                style: { fontSize: '1.2rem' }
+              }}
+            />
+          </Tooltip>
+        ))}
+      </Box>
+    </Box>
+  );
+
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
         {getDefaultTranslation('app.tabs.king')}
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {Object.entries(kingSettings).map(([kingKey, king]) => (
-          <Accordion key={kingKey}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{getKingTranslation(kingKey)}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={king.IsEnabled}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleKingChange(kingKey, 'IsEnabled', e.target.checked)
+      <Box sx={{ display: 'flex', gap: 2, minHeight: 400 }}>
+        <Paper elevation={2} sx={{ width: 200 }}>
+          <List component="nav">
+            {Object.entries(kingSettings).map(([kingKey]) => (
+              <ListItem key={kingKey} disablePadding>
+                <ListItemButton
+                  selected={selectedKing === kingKey}
+                  onClick={() => setSelectedKing(kingKey)}
+                  sx={{
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark',
+                      },
+                    },
+                  }}
+                >
+                  <ListItemText 
+                    primary={getKingTranslation(kingKey)} 
+                    sx={{ 
+                      textAlign: 'center',
+                      '& .MuiListItemText-primary': {
+                        textAlign: 'center'
                       }
-                    />
-                  }
-                  label={getDefaultTranslation('king.enabled')}
-                />
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={king.HasVictory}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleKingChange(kingKey, 'HasVictory', e.target.checked)
-                      }
-                    />
-                  }
-                  label={getDefaultTranslation('king.hasVictory')}
-                />
-                <TextField
-                  label={getDefaultTranslation('king.totalXP')}
-                  type="number"
-                  value={king.TotalXP}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleKingChange(kingKey, 'TotalXP', parseInt(e.target.value))
-                  }
-                  fullWidth
-                />
-                <Typography variant="subtitle1" gutterBottom>
-                  {getDefaultTranslation('king.perks')}
-                </Typography>
-                <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
-                  {Object.entries(king.Perks).map(([perkName, perk]) => (
-                    <Tooltip
-                      key={perkName}
-                      title={
-                        <Typography style={{ fontSize: '1.0rem', whiteSpace: 'pre-wrap' }}>
-                          {getPerkDescriptionTranslation(perkName)}
-                        </Typography>
-                      }
-                      placement="top"
-                      arrow
-                    >
-                      <TextField
-                        label={getPerkTranslation(perkName)}
-                        type="number"
-                        value={perk.Level}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          handlePerkChange(kingKey, perkName, parseInt(e.target.value))
-                        }
-                        fullWidth
-                        inputProps={{ min: 0, max: 3 }}
-                        InputLabelProps={{
-                          style: { fontSize: '1.2rem' }
-                        }}
-                      />
-                    </Tooltip>
-                  ))}
-                </Box>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
+        {selectedKing && renderKingContent(selectedKing, kingSettings[selectedKing])}
       </Box>
     </Paper>
   );
