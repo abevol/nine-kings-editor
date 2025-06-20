@@ -6,21 +6,15 @@ import yaml from 'yaml';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// 扁平化输出结构类型
+interface TranslationLibrary {
+  supportedLanguages: { [code: string]: string };
+  terms: { [term: string]: { [lang: string]: string } };
+}
+
 interface Language {
   code: string;
   name: string;
-}
-
-interface Term {
-  term: string;
-  translations: {
-    [key: string]: string;  // key is language code
-  };
-}
-
-interface TranslationLibrary {
-  supportedLanguages: Language[];
-  terms: Term[];
 }
 
 // 从 I2Languages.asset 文件中提取语言列表
@@ -145,27 +139,26 @@ function extractTranslationsFromI2(i2Path: string, languages: Language[]): Map<s
 
 // 生成翻译术语库
 function generateTranslationLibrary(
-  terms: Set<string>, 
+  terms: Set<string>,
   translations: Map<string, { [key: string]: string }>,
   languages: Language[]
 ): TranslationLibrary {
-  const translationLibrary: TranslationLibrary = {
-    supportedLanguages: languages,
-    terms: []
-  };
-
+  const supportedLanguages: { [code: string]: string } = {};
+  languages.forEach(lang => {
+    supportedLanguages[lang.code] = lang.name;
+  });
+  const flatTerms: { [term: string]: { [lang: string]: string } } = {};
   terms.forEach(term => {
     if (translations.has(term)) {
-      translationLibrary.terms.push({
-        term,
-        translations: translations.get(term)!
-      });
+      flatTerms[term] = translations.get(term)!;
     } else {
       console.log(`警告：找不到术语 "${term}" 的翻译`);
     }
   });
-
-  return translationLibrary;
+  return {
+    supportedLanguages,
+    terms: flatTerms
+  };
 }
 
 // 主函数
@@ -189,7 +182,7 @@ export function extractTranslations() {
 
     // 4. 生成翻译术语库
     const translationLibrary = generateTranslationLibrary(terms, translations, languages);
-    console.log(`生成了 ${translationLibrary.terms.length} 个翻译条目`);
+    console.log(`生成了 ${Object.keys(translationLibrary.terms).length} 个翻译条目`);
 
     // 5. 写入文件
     const outputDir = path.dirname(outputPath);
