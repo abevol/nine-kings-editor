@@ -111,7 +111,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                   fullWidth
                 />
                 <Typography variant="subtitle1" gutterBottom>
-                  技能
+                  天赋
                 </Typography>
                 <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
                   {Object.entries(king.Perks).map(([perkName, perk]) => (

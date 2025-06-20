@@ -1,35 +1,7 @@
 {
   "supportedLanguages": {
     "en": "English",
-    "pt-BR": "Portuguese (Brazil)",
-    "pt-PT": "Portuguese (Portugal)",
-    "ja": "Japanese",
-    "zh-CN": "Chinese (Simplified)",
-    "zh-TW": "Chinese (Traditional)",
-    "de": "German",
-    "es-ES": "Spanish (Castilian)",
-    "es-MX": "Spanish (Mexico)",
-    "ko": "Korean",
-    "fr": "French",
-    "ru": "Russian",
-    "it": "Italian",
-    "bg": "Bulgarian",
-    "cs": "Czech",
-    "fil": "Filipino",
-    "el": "Greek",
-    "hu": "Hungarian",
-    "id": "Indonesian",
-    "ms": "Malay",
-    "pl": "Polish",
-    "ro": "Romanian",
-    "sk": "Slovak",
-    "tr": "Turkish",
-    "uk": "Ukrainian",
-    "da": "Danish",
-    "nl": "Dutch",
-    "fi": "Finnish",
-    "nb": "Norwegian",
-    "sv": "Swedish"
+    "zh-CN": "Chinese (Simplified)"
   },
   "terms": {
     "app.title": {
@@ -141,7 +113,7 @@
       "en": "Total XP"
     },
     "king.perks": {
-      "zh-CN": "技能",
+      "zh-CN": "天赋",
       "en": "Perks"
     },
     "difficulty.title": {
