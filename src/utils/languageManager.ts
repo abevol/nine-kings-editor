@@ -13,8 +13,8 @@ type LanguageMap = {
 export const getSupportedLanguages = (): LanguageMap => {
   // 合并两个翻译文件中的语言，并去重
   const languages = {
-    ...defaultTranslations.supportedLanguages,
     ...libraryTranslations.supportedLanguages,
+    ...defaultTranslations.supportedLanguages,
   } as LanguageMap;
   return languages;
 };

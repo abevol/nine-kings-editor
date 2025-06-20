@@ -140,6 +140,7 @@ function App() {
           <Button color="inherit" onClick={handleSave} disabled={!settings}>
             {getDefaultTranslation('app.buttons.downloadConfig')}
           </Button>
+          <Box sx={{ width: 16 }} />
           <LanguageSelector />
         </Toolbar>
       </AppBar>

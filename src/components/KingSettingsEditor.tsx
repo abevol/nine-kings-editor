@@ -124,8 +124,13 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                   {Object.entries(king.Perks).map(([perkName, perk]) => (
                     <Tooltip
                       key={perkName}
-                      title={getPerkDescriptionTranslation(perkName)}
+                      title={
+                        <Typography style={{ fontSize: '1.0rem', whiteSpace: 'pre-wrap' }}>
+                          {getPerkDescriptionTranslation(perkName)}
+                        </Typography>
+                      }
                       placement="top"
+                      arrow
                     >
                       <TextField
                         label={getPerkTranslation(perkName)}
@@ -136,6 +141,9 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                         }
                         fullWidth
                         inputProps={{ min: 0, max: 3 }}
+                        InputLabelProps={{
+                          style: { fontSize: '1.2rem' }
+                        }}
                       />
                     </Tooltip>
                   ))}
