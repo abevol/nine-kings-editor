@@ -204,12 +204,12 @@ function App() {
                 width: '80%'
               }}>
                 <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
-                  <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body1" sx={{ fontWeight: 500, color: 'black' }}>
                     您可以在"打开配置"对话框中输入
                   </Typography>
                   <Typography variant="body2" component="span" sx={{ 
                     bgcolor: (theme) => theme.palette.mode === 'dark' ? 'primary.main' : 'primary.main',
-                    color: 'white',
+                    color: 'black',
                     px: 1, 
                     py: 0.5, 
                     borderRadius: 1,
