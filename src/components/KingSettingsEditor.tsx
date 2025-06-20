@@ -9,10 +9,17 @@ import {
   AccordionSummary,
   AccordionDetails,
   TextField,
+  Tooltip,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { NineKingsSettings, KingSettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
+import {
+  getDefaultTranslation,
+  getKingTranslation,
+  getPerkTranslation,
+  getPerkDescriptionTranslation,
+} from '../utils/translationHelper';
 
 interface KingSettingsEditorProps {
   settings: NineKingsSettings;
@@ -69,13 +76,13 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
-        国王设置
+        {getDefaultTranslation('app.tabs.king')}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         {Object.entries(kingSettings).map(([kingKey, king]) => (
           <Accordion key={kingKey}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{kingKey}</Typography>
+              <Typography>{getKingTranslation(kingKey)}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -88,7 +95,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                       }
                     />
                   }
-                  label="已启用"
+                  label={getDefaultTranslation('king.enabled')}
                 />
                 <FormControlLabel
                   control={
@@ -99,10 +106,10 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                       }
                     />
                   }
-                  label="已获胜"
+                  label={getDefaultTranslation('king.hasVictory')}
                 />
                 <TextField
-                  label="总经验值"
+                  label={getDefaultTranslation('king.totalXP')}
                   type="number"
                   value={king.TotalXP}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -111,21 +118,26 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                   fullWidth
                 />
                 <Typography variant="subtitle1" gutterBottom>
-                  天赋
+                  {getDefaultTranslation('king.perks')}
                 </Typography>
                 <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
                   {Object.entries(king.Perks).map(([perkName, perk]) => (
-                    <TextField
+                    <Tooltip
                       key={perkName}
-                      label={perkName.replace('Perk_', '')}
-                      type="number"
-                      value={perk.Level}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handlePerkChange(kingKey, perkName, parseInt(e.target.value))
-                      }
-                      fullWidth
-                      inputProps={{ min: 0, max: 3 }}
-                    />
+                      title={getPerkDescriptionTranslation(perkName)}
+                      placement="top"
+                    >
+                      <TextField
+                        label={getPerkTranslation(perkName)}
+                        type="number"
+                        value={perk.Level}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          handlePerkChange(kingKey, perkName, parseInt(e.target.value))
+                        }
+                        fullWidth
+                        inputProps={{ min: 0, max: 3 }}
+                      />
+                    </Tooltip>
                   ))}
                 </Box>
               </Box>

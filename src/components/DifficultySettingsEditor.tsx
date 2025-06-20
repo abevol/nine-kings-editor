@@ -5,7 +5,6 @@ import {
   Typography,
   Switch,
   FormControlLabel,
-  Grid,
   FormControl,
   InputLabel,
   Select,
@@ -14,6 +13,7 @@ import {
 } from '@mui/material';
 import { NineKingsSettings, DifficultySettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
+import { getDefaultTranslation, getDifficultyTranslation } from '../utils/translationHelper';
 
 interface DifficultySettingsEditorProps {
   settings: NineKingsSettings;
@@ -64,23 +64,23 @@ const DifficultySettingsEditor: React.FC<DifficultySettingsEditorProps> = ({ set
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
-        难度设置
+        {getDefaultTranslation('app.tabs.difficulty')}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <FormControl fullWidth>
-          <InputLabel>当前难度</InputLabel>
+          <InputLabel>{getDefaultTranslation('difficulty.currentDifficulty')}</InputLabel>
           <Select
             value={difficultySettings.DifficultySelected}
             onChange={(e: SelectChangeEvent<number>) =>
               handleDifficultyChange(e.target.value as number)
             }
-            label="当前难度"
+            label={getDefaultTranslation('difficulty.currentDifficulty')}
           >
             {Object.entries(difficultySettings.LevelSettings)
               .filter(([_, level]) => level.IsEnabled)
               .map(([key], index) => (
                 <MenuItem key={key} value={index}>
-                  {key.replace('Difficulty_', '')}
+                  {getDifficultyTranslation(key)}
                 </MenuItem>
               ))}
           </Select>
@@ -97,7 +97,7 @@ const DifficultySettingsEditor: React.FC<DifficultySettingsEditorProps> = ({ set
                   }
                 />
               }
-              label={key.replace('Difficulty_', '')}
+              label={getDifficultyTranslation(key)}
             />
           ))}
         </Box>

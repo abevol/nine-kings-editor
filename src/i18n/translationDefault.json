@@ -40,6 +40,22 @@
       "zh-CN": "它通常位于",
       "en": "It is usually located at"
     },
+    "app.prompt.inputPath": {
+      "zh-CN": "您可以在\"打开配置\"对话框中输入",
+      "en": "You can input in the \"Open Config\" dialog"
+    },
+    "app.prompt.copyPath": {
+      "zh-CN": "复制路径",
+      "en": "Copy Path"
+    },
+    "app.prompt.copied": {
+      "zh-CN": "已复制！",
+      "en": "Copied!"
+    },
+    "app.prompt.warning": {
+      "zh-CN": "下载配置后，您需要先退出游戏，然后用下载的配置文件替换掉之前的配置文件（请做好备份），您的修改才会生效。",
+      "en": "After downloading the config, you need to exit the game first, then replace the original config file with the downloaded one (please make a backup). Your changes will take effect after that."
+    },
     "audio.title": {
       "zh-CN": "音频设置",
       "en": "Audio Settings"

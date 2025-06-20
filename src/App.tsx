@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -22,10 +22,12 @@ import {
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './utils/settingsHelper';
+import { getDefaultTranslation } from './utils/translationHelper';
 import AudioSettingsEditor from './components/AudioSettingsEditor';
 import GameplaySettingsEditor from './components/GameplaySettingsEditor';
 import KingSettingsEditor from './components/KingSettingsEditor';
 import DifficultySettingsEditor from './components/DifficultySettingsEditor';
+import LanguageSelector from './components/LanguageSelector';
 
 const getDefaultConfigPath = () => {
   const userProfile = process.env.USERPROFILE || '';
@@ -62,14 +64,20 @@ function App() {
   const [settings, setSettings] = useState<NineKingsSettings | null>(null);
   const [currentTab, setCurrentTab] = useState(0);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [, forceUpdate] = useState({});
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const loadedSettings = await loadSettings(file);
-      setSettings(loadedSettings);
-    }
-  };
+  useEffect(() => {
+    // 监听语言变化事件，强制重新渲染
+    const handleLanguageChange = () => {
+      forceUpdate({});
+    };
+
+    window.addEventListener('languagechange', handleLanguageChange);
+
+    return () => {
+      window.removeEventListener('languagechange', handleLanguageChange);
+    };
+  }, []);
 
   const handleFileClick = () => {
     const input = document.createElement('input');
@@ -115,7 +123,7 @@ function App() {
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
     } catch (err) {
-      console.error('复制失败:', err);
+      console.error('Failed to copy path:', err);
     }
   };
 
@@ -124,14 +132,15 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            九王存档编辑器
+            {getDefaultTranslation('app.title')}
           </Typography>
           <Button color="inherit" onClick={handleFileClick}>
-            打开配置
+            {getDefaultTranslation('app.buttons.openConfig')}
           </Button>
           <Button color="inherit" onClick={handleSave} disabled={!settings}>
-            下载配置
+            {getDefaultTranslation('app.buttons.downloadConfig')}
           </Button>
+          <LanguageSelector />
         </Toolbar>
       </AppBar>
       <Container maxWidth="lg">
@@ -145,10 +154,10 @@ function App() {
                 indicatorColor="primary"
                 textColor="primary"
               >
-                <Tab icon={<AudioIcon />} label="音频" />
-                <Tab icon={<GameplayIcon />} label="游戏" />
-                <Tab icon={<KingIcon />} label="国王" />
-                <Tab icon={<DifficultyIcon />} label="难度" />
+                <Tab icon={<AudioIcon />} label={getDefaultTranslation('app.tabs.audio')} />
+                <Tab icon={<GameplayIcon />} label={getDefaultTranslation('app.tabs.gameplay')} />
+                <Tab icon={<KingIcon />} label={getDefaultTranslation('app.tabs.king')} />
+                <Tab icon={<DifficultyIcon />} label={getDefaultTranslation('app.tabs.difficulty')} />
               </Tabs>
             </Paper>
             <TabPanel value={currentTab} index={0}>
@@ -183,7 +192,7 @@ function App() {
               mb: 4,
               fontWeight: 'medium'
             }}>
-              请打开一个 9KingsSettings.json 配置文件开始编辑
+              {getDefaultTranslation('app.prompt.openFile')}
             </Typography>
             <Stack spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
               <Box sx={{ 
@@ -193,7 +202,7 @@ function App() {
                 width: '80%'
               }}>
                 <Typography variant="body1" align="center" color="text.secondary">
-                  它通常位于 `C:\Users\你的用户名\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json`
+                  {getDefaultTranslation('app.prompt.filePath')} `C:\Users\Your Username\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json`
                 </Typography>
               </Box>
 
@@ -205,7 +214,7 @@ function App() {
               }}>
                 <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
                   <Typography variant="body1" sx={{ fontWeight: 500, color: 'black' }}>
-                    您可以在"打开配置"对话框中输入
+                    {getDefaultTranslation('app.prompt.inputPath')}
                   </Typography>
                   <Typography variant="body2" component="span" sx={{ 
                     bgcolor: (theme) => theme.palette.mode === 'dark' ? 'primary.main' : 'primary.main',
@@ -218,7 +227,7 @@ function App() {
                   }}>
                     %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
                   </Typography>
-                  <Tooltip title={copySuccess ? "已复制！" : "复制路径"}>
+                  <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
                     <IconButton 
                       onClick={handleCopyPath} 
                       size="small" 
@@ -242,7 +251,7 @@ function App() {
                   align="center" 
                   sx={{ color: 'black' }}
                 >
-                  下载配置后，您需要先退出游戏，然后用下载的配置文件替换掉之前的配置文件（请做好备份），您的修改才会生效。
+                  {getDefaultTranslation('app.prompt.warning')}
                 </Typography>
               </Box>
             </Stack>
