@@ -1,143 +1,178 @@
 {
   "supportedLanguages": {
     "en": "English",
-    "zh-CN": "简体中文"
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文"
   },
   "terms": {
     "app.title": {
       "zh-CN": "九王存档编辑器",
+      "zh-TW": "九王存檔編輯器",
       "en": "Nine Kings Save Editor"
     },
     "app.buttons.openConfig": {
       "zh-CN": "打开配置",
+      "zh-TW": "開啟設定",
       "en": "Open Config"
     },
     "app.buttons.downloadConfig": {
       "zh-CN": "下载配置",
+      "zh-TW": "下載設定",
       "en": "Download Config"
     },
     "app.tabs.audio": {
       "zh-CN": "音频",
+      "zh-TW": "音訊",
       "en": "Audio"
     },
     "app.tabs.gameplay": {
       "zh-CN": "游戏",
+      "zh-TW": "遊戲",
       "en": "Gameplay"
     },
     "app.tabs.king": {
       "zh-CN": "国王",
+      "zh-TW": "國王",
       "en": "King"
     },
     "app.tabs.difficulty": {
       "zh-CN": "难度",
+      "zh-TW": "難度",
       "en": "Difficulty"
     },
     "app.prompt.openFile": {
       "zh-CN": "请打开一个 9KingsSettings.json 配置文件开始编辑",
+      "zh-TW": "請開啟一個 9KingsSettings.json 設定檔案開始編輯",
       "en": "Please open a 9KingsSettings.json config file to start editing"
     },
     "app.prompt.filePath": {
       "zh-CN": "它通常位于",
+      "zh-TW": "它通常位於",
       "en": "It is usually located at"
     },
     "app.prompt.inputPath": {
       "zh-CN": "您可以在\"打开配置\"对话框中输入",
+      "zh-TW": "您可以在\"開啟設定\"對話框中輸入",
       "en": "You can input in the \"Open Config\" dialog"
     },
     "app.prompt.copyPath": {
       "zh-CN": "复制路径",
+      "zh-TW": "複製路徑",
       "en": "Copy Path"
     },
     "app.prompt.copied": {
       "zh-CN": "已复制！",
+      "zh-TW": "已複製！",
       "en": "Copied!"
     },
     "app.prompt.warning": {
       "zh-CN": "下载配置后，您需要先退出游戏，然后用下载的配置文件替换掉之前的配置文件（请做好备份），您的修改才会生效。",
+      "zh-TW": "下載設定後，您需要先退出遊戲，然後用下載的設定檔案替換掉之前的設定檔案（請做好備份），您的修改才會生效。",
       "en": "After downloading the config, you need to exit the game first, then replace the original config file with the downloaded one (please make a backup). Your changes will take effect after that."
     },
     "audio.title": {
       "zh-CN": "音频设置",
+      "zh-TW": "音訊設定",
       "en": "Audio Settings"
     },
     "audio.masterVolume": {
       "zh-CN": "主音量",
+      "zh-TW": "主音量",
       "en": "Master Volume"
     },
     "audio.musicVolume": {
       "zh-CN": "音乐音量",
+      "zh-TW": "音樂音量",
       "en": "Music Volume"
     },
     "audio.sfxVolume": {
       "zh-CN": "音效音量",
+      "zh-TW": "音效音量",
       "en": "SFX Volume"
     },
     "gameplay.title": {
       "zh-CN": "游戏设置",
+      "zh-TW": "遊戲設定",
       "en": "Gameplay Settings"
     },
     "gameplay.screenShake": {
       "zh-CN": "屏幕震动",
+      "zh-TW": "螢幕震動",
       "en": "Screen Shake"
     },
     "gameplay.skipAnimations": {
       "zh-CN": "跳过动画",
+      "zh-TW": "跳過動畫",
       "en": "Skip Animations"
     },
     "gameplay.plotDamageText": {
       "zh-CN": "显示伤害文字",
+      "zh-TW": "顯示傷害文字",
       "en": "Show Damage Text"
     },
     "gameplay.damageIndicators": {
       "zh-CN": "伤害指示器",
+      "zh-TW": "傷害指示器",
       "en": "Damage Indicators"
     },
     "gameplay.autoAttack": {
       "zh-CN": "自动攻击",
+      "zh-TW": "自動攻擊",
       "en": "Auto Attack"
     },
     "gameplay.troopAnimations": {
       "zh-CN": "部队动画",
+      "zh-TW": "部隊動畫",
       "en": "Troop Animations"
     },
     "gameplay.bloodEnabled": {
       "zh-CN": "显示血液效果",
+      "zh-TW": "顯示血液效果",
       "en": "Show Blood Effects"
     },
     "gameplay.enemySlowTime": {
       "zh-CN": "敌人减速效果",
+      "zh-TW": "敵人減速效果",
       "en": "Enemy Slow Time"
     },
     "gameplay.gameSpeed": {
       "zh-CN": "游戏速度",
+      "zh-TW": "遊戲速度",
       "en": "Game Speed"
     },
     "king.title": {
       "zh-CN": "国王设置",
+      "zh-TW": "國王設定",
       "en": "King Settings"
     },
     "king.enabled": {
       "zh-CN": "已启用",
+      "zh-TW": "已啟用",
       "en": "Enabled"
     },
     "king.hasVictory": {
       "zh-CN": "已获胜",
+      "zh-TW": "已獲勝",
       "en": "Has Victory"
     },
     "king.totalXP": {
       "zh-CN": "总经验值",
+      "zh-TW": "總經驗值",
       "en": "Total XP"
     },
     "king.perks": {
       "zh-CN": "天赋",
+      "zh-TW": "天賦",
       "en": "Perks"
     },
     "difficulty.title": {
       "zh-CN": "难度设置",
+      "zh-TW": "難度設定",
       "en": "Difficulty Settings"
     },
     "difficulty.currentDifficulty": {
       "zh-CN": "当前难度",
+      "zh-TW": "當前難度",
       "en": "Current Difficulty"
     }
   }
