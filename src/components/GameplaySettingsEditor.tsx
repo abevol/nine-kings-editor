@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Paper, Typography, Switch, FormControlLabel, Slider } from '@mui/material';
 import { NineKingsSettings, GameplaySettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
+import { getDefaultTranslation } from '../utils/translationHelper';
 
 interface GameplaySettingsEditorProps {
   settings: NineKingsSettings;
@@ -44,7 +45,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
-        游戏设置
+        {getDefaultTranslation('gameplay.title')}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <FormControlLabel
@@ -54,7 +55,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('ScreenShake')}
             />
           }
-          label="屏幕震动"
+          label={getDefaultTranslation('gameplay.screenShake')}
         />
         <FormControlLabel
           control={
@@ -63,7 +64,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('SkipAnimations')}
             />
           }
-          label="跳过动画"
+          label={getDefaultTranslation('gameplay.skipAnimations')}
         />
         <FormControlLabel
           control={
@@ -72,7 +73,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('PlotDamageText')}
             />
           }
-          label="显示伤害文字"
+          label={getDefaultTranslation('gameplay.plotDamageText')}
         />
         <FormControlLabel
           control={
@@ -81,7 +82,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('DamageIndicators')}
             />
           }
-          label="伤害指示器"
+          label={getDefaultTranslation('gameplay.damageIndicators')}
         />
         <FormControlLabel
           control={
@@ -90,7 +91,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('AutoAttackEnabled')}
             />
           }
-          label="自动攻击"
+          label={getDefaultTranslation('gameplay.autoAttack')}
         />
         <FormControlLabel
           control={
@@ -99,7 +100,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('TroopAnimations')}
             />
           }
-          label="部队动画"
+          label={getDefaultTranslation('gameplay.troopAnimations')}
         />
         <FormControlLabel
           control={
@@ -108,7 +109,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('BloodEnabled')}
             />
           }
-          label="显示血液效果"
+          label={getDefaultTranslation('gameplay.bloodEnabled')}
         />
         <FormControlLabel
           control={
@@ -117,10 +118,10 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
               onChange={handleBooleanChange('EnableEnemySlowTime')}
             />
           }
-          label="敌人减速效果"
+          label={getDefaultTranslation('gameplay.enemySlowTime')}
         />
         <Box>
-          <Typography gutterBottom>游戏速度</Typography>
+          <Typography gutterBottom>{getDefaultTranslation('gameplay.gameSpeed')}</Typography>
           <Slider
             value={gameplaySettings.Speed}
             onChange={handleSpeedChange}

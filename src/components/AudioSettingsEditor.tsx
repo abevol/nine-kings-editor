@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Paper, Typography, Slider } from '@mui/material';
 import { NineKingsSettings, AudioSettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
+import { getDefaultTranslation } from '../utils/translationHelper';
 
 interface AudioSettingsEditorProps {
   settings: NineKingsSettings;
@@ -29,11 +30,11 @@ const AudioSettingsEditor: React.FC<AudioSettingsEditorProps> = ({ settings, onC
   return (
     <Paper sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom>
-        音频设置
+        {getDefaultTranslation('audio.title')}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Box>
-          <Typography gutterBottom>主音量</Typography>
+          <Typography gutterBottom>{getDefaultTranslation('audio.masterVolume')}</Typography>
           <Slider
             value={audioSettings.MasterVolume}
             onChange={handleChange('MasterVolume')}
@@ -45,7 +46,7 @@ const AudioSettingsEditor: React.FC<AudioSettingsEditorProps> = ({ settings, onC
           />
         </Box>
         <Box>
-          <Typography gutterBottom>音乐音量</Typography>
+          <Typography gutterBottom>{getDefaultTranslation('audio.musicVolume')}</Typography>
           <Slider
             value={audioSettings.MusicVolume}
             onChange={handleChange('MusicVolume')}
@@ -57,7 +58,7 @@ const AudioSettingsEditor: React.FC<AudioSettingsEditorProps> = ({ settings, onC
           />
         </Box>
         <Box>
-          <Typography gutterBottom>音效音量</Typography>
+          <Typography gutterBottom>{getDefaultTranslation('audio.sfxVolume')}</Typography>
           <Slider
             value={audioSettings.SfxVolume}
             onChange={handleChange('SfxVolume')}
