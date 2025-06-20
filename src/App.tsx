@@ -70,7 +70,12 @@ function App() {
     // 监听语言变化事件，强制重新渲染
     const handleLanguageChange = () => {
       forceUpdate({});
+      // 更新标题
+      document.title = getDefaultTranslation('app.title');
     };
+
+    // 初始化标题
+    document.title = getDefaultTranslation('app.title');
 
     window.addEventListener('languagechange', handleLanguageChange);
 
