@@ -1,0 +1,156 @@
+{
+  "supportedLanguages": {
+    "en": "English",
+    "pt-BR": "Portuguese (Brazil)",
+    "pt-PT": "Portuguese (Portugal)",
+    "ja": "Japanese",
+    "zh-CN": "Chinese (Simplified)",
+    "zh-TW": "Chinese (Traditional)",
+    "de": "German",
+    "es-ES": "Spanish (Castilian)",
+    "es-MX": "Spanish (Mexico)",
+    "ko": "Korean",
+    "fr": "French",
+    "ru": "Russian",
+    "it": "Italian",
+    "bg": "Bulgarian",
+    "cs": "Czech",
+    "fil": "Filipino",
+    "el": "Greek",
+    "hu": "Hungarian",
+    "id": "Indonesian",
+    "ms": "Malay",
+    "pl": "Polish",
+    "ro": "Romanian",
+    "sk": "Slovak",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
+    "da": "Danish",
+    "nl": "Dutch",
+    "fi": "Finnish",
+    "nb": "Norwegian",
+    "sv": "Swedish"
+  },
+  "terms": {
+    "app.title": {
+      "zh-CN": "九王存档编辑器",
+      "en": "Nine Kings Save Editor"
+    },
+    "app.buttons.openConfig": {
+      "zh-CN": "打开配置",
+      "en": "Open Config"
+    },
+    "app.buttons.downloadConfig": {
+      "zh-CN": "下载配置",
+      "en": "Download Config"
+    },
+    "app.tabs.audio": {
+      "zh-CN": "音频",
+      "en": "Audio"
+    },
+    "app.tabs.gameplay": {
+      "zh-CN": "游戏",
+      "en": "Gameplay"
+    },
+    "app.tabs.king": {
+      "zh-CN": "国王",
+      "en": "King"
+    },
+    "app.tabs.difficulty": {
+      "zh-CN": "难度",
+      "en": "Difficulty"
+    },
+    "app.prompt.openFile": {
+      "zh-CN": "请打开一个 9KingsSettings.json 配置文件开始编辑",
+      "en": "Please open a 9KingsSettings.json config file to start editing"
+    },
+    "app.prompt.filePath": {
+      "zh-CN": "它通常位于",
+      "en": "It is usually located at"
+    },
+    "audio.title": {
+      "zh-CN": "音频设置",
+      "en": "Audio Settings"
+    },
+    "audio.masterVolume": {
+      "zh-CN": "主音量",
+      "en": "Master Volume"
+    },
+    "audio.musicVolume": {
+      "zh-CN": "音乐音量",
+      "en": "Music Volume"
+    },
+    "audio.sfxVolume": {
+      "zh-CN": "音效音量",
+      "en": "SFX Volume"
+    },
+    "gameplay.title": {
+      "zh-CN": "游戏设置",
+      "en": "Gameplay Settings"
+    },
+    "gameplay.screenShake": {
+      "zh-CN": "屏幕震动",
+      "en": "Screen Shake"
+    },
+    "gameplay.skipAnimations": {
+      "zh-CN": "跳过动画",
+      "en": "Skip Animations"
+    },
+    "gameplay.plotDamageText": {
+      "zh-CN": "显示伤害文字",
+      "en": "Show Damage Text"
+    },
+    "gameplay.damageIndicators": {
+      "zh-CN": "伤害指示器",
+      "en": "Damage Indicators"
+    },
+    "gameplay.autoAttack": {
+      "zh-CN": "自动攻击",
+      "en": "Auto Attack"
+    },
+    "gameplay.troopAnimations": {
+      "zh-CN": "部队动画",
+      "en": "Troop Animations"
+    },
+    "gameplay.bloodEnabled": {
+      "zh-CN": "显示血液效果",
+      "en": "Show Blood Effects"
+    },
+    "gameplay.enemySlowTime": {
+      "zh-CN": "敌人减速效果",
+      "en": "Enemy Slow Time"
+    },
+    "gameplay.gameSpeed": {
+      "zh-CN": "游戏速度",
+      "en": "Game Speed"
+    },
+    "king.title": {
+      "zh-CN": "国王设置",
+      "en": "King Settings"
+    },
+    "king.enabled": {
+      "zh-CN": "已启用",
+      "en": "Enabled"
+    },
+    "king.hasVictory": {
+      "zh-CN": "已获胜",
+      "en": "Has Victory"
+    },
+    "king.totalXP": {
+      "zh-CN": "总经验值",
+      "en": "Total XP"
+    },
+    "king.perks": {
+      "zh-CN": "技能",
+      "en": "Perks"
+    },
+    "difficulty.title": {
+      "zh-CN": "难度设置",
+      "en": "Difficulty Settings"
+    },
+    "difficulty.currentDifficulty": {
+      "zh-CN": "当前难度",
+      "en": "Current Difficulty"
+    }
+  }
+} 
