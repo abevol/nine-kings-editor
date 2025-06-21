@@ -209,7 +209,7 @@ function App() {
               <Box sx={{ 
                 p: 2,
                 borderRadius: 1,
-                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'grey.800' : 'grey.100',
+                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'action.hover' : 'grey.100',
                 width: '80%'
               }}>
                 <Stack spacing={2}>
