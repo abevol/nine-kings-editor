@@ -24,6 +24,7 @@ import {
   GetApp as DownloadIcon,
   Save as SaveIcon,
   PlayArrow as PlayIcon,
+  BugReport as BugReportIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './utils/settingsHelper';
@@ -33,6 +34,7 @@ import GameplaySettingsEditor from './components/GameplaySettingsEditor';
 import KingSettingsEditor from './components/KingSettingsEditor';
 import DifficultySettingsEditor from './components/DifficultySettingsEditor';
 import LanguageSelector from './components/LanguageSelector';
+import DebugSettingsEditor from './components/DebugSettingsEditor';
 
 const getDefaultConfigPath = () => {
   const userProfile = process.env.USERPROFILE || '';
@@ -169,6 +171,7 @@ function App() {
                 <Tab icon={<GameplayIcon />} label={getDefaultTranslation('app.tabs.gameplay')} />
                 <Tab icon={<KingIcon />} label={getDefaultTranslation('app.tabs.king')} />
                 <Tab icon={<DifficultyIcon />} label={getDefaultTranslation('app.tabs.difficulty')} />
+                <Tab icon={<BugReportIcon />} label={getDefaultTranslation('app.tabs.debug')} />
               </Tabs>
             </Paper>
             <TabPanel value={currentTab} index={0}>
@@ -194,6 +197,9 @@ function App() {
                 settings={settings}
                 onChange={setSettings}
               />
+            </TabPanel>
+            <TabPanel value={currentTab} index={4}>
+              <DebugSettingsEditor settings={settings} onSettingsChange={setSettings} />
             </TabPanel>
           </>
         ) : (

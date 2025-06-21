@@ -48,6 +48,12 @@
       "ja": "難易度",
       "en": "Difficulty"
     },
+    "app.tabs.debug": {
+      "zh-CN": "调试",
+      "zh-TW": "偵錯",
+      "ja": "デバッグ",
+      "en": "Debug"
+    },
     "app.prompt.copyPath": {
       "zh-CN": "复制路径",
       "zh-TW": "複製路徑",
@@ -145,16 +151,16 @@
       "en": "Skip Animations"
     },
     "gameplay.plotDamageText": {
-      "zh-CN": "显示伤害文字",
-      "zh-TW": "顯示傷害文字",
-      "ja": "ダメージ表示",
-      "en": "Show Damage Text"
+      "zh-CN": "显示地块伤害",
+      "zh-TW": "顯示地塊傷害",
+      "ja": "区画ダメージ表示",
+      "en": "Show Plot Damage"
     },
     "gameplay.damageIndicators": {
-      "zh-CN": "伤害指示器",
-      "zh-TW": "傷害指示器",
-      "ja": "ダメージ表示器",
-      "en": "Damage Indicators"
+      "zh-CN": "显示战斗伤害",
+      "zh-TW": "顯示戰鬥傷害",
+      "ja": "戦闘ダメージ表示",
+      "en": "Show Combat Damage"
     },
     "gameplay.autoAttack": {
       "zh-CN": "自动攻击",
@@ -227,6 +233,24 @@
       "zh-TW": "當前難度",
       "ja": "現在の難易度",
       "en": "Current Difficulty"
+    },
+    "debug.title": {
+      "zh-CN": "调试设置",
+      "zh-TW": "偵錯設定",
+      "ja": "デバッグ設定",
+      "en": "Debug Settings"
+    },
+    "debug.showFPS": {
+      "zh-CN": "显示帧率",
+      "zh-TW": "顯示幀率",
+      "ja": "FPS表示",
+      "en": "Show FPS"
+    },
+    "debug.debugMode": {
+      "zh-CN": "调试模式",
+      "zh-TW": "偵錯模式",
+      "ja": "デバッグモード",
+      "en": "Debug Mode"
     }
   }
 } 
