@@ -48,24 +48,6 @@
       "ja": "難易度",
       "en": "Difficulty"
     },
-    "app.prompt.openFile": {
-      "zh-CN": "请打开一个 9KingsSettings.json 配置文件开始编辑",
-      "zh-TW": "請開啟一個 9KingsSettings.json 設定檔案開始編輯",
-      "ja": "9KingsSettings.json 設定ファイルを開いて編集を開始してください",
-      "en": "Please open a 9KingsSettings.json config file to start editing"
-    },
-    "app.prompt.filePath": {
-      "zh-CN": "它通常位于",
-      "zh-TW": "它通常位於",
-      "ja": "通常の保存場所：",
-      "en": "It is usually located at"
-    },
-    "app.prompt.inputPath": {
-      "zh-CN": "您可以在\"打开配置\"对话框中输入",
-      "zh-TW": "您可以在\"開啟設定\"對話框中輸入",
-      "ja": "「設定を開く」ダイアログで入力できます",
-      "en": "You can input in the \"Open Config\" dialog"
-    },
     "app.prompt.copyPath": {
       "zh-CN": "复制路径",
       "zh-TW": "複製路徑",
@@ -78,11 +60,47 @@
       "ja": "コピーしました！",
       "en": "Copied!"
     },
-    "app.prompt.warning": {
-      "zh-CN": "下载配置后，您需要先退出游戏，然后用下载的配置文件替换掉之前的配置文件（请做好备份），您的修改才会生效。",
-      "zh-TW": "下載設定後，您需要先退出遊戲，然後用下載的設定檔案替換掉之前的設定檔案（請做好備份），您的修改才會生效。",
-      "ja": "設定を保存後、ゲームを終了し、保存した設定ファイルで元のファイルを置き換えてください（バックアップを推奨）。変更は再起動後に反映されます。",
-      "en": "After downloading the config, you need to exit the game first, then replace the original config file with the downloaded one (please make a backup). Your changes will take effect after that."
+    "app.prompt.title": {
+      "zh-CN": "使用流程",
+      "zh-TW": "使用流程",
+      "ja": "使用手順",
+      "en": "How to Use"
+    },
+    "app.prompt.step1": {
+      "zh-CN": "复制游戏存档文件路径：",
+      "zh-TW": "複製遊戲存檔檔案路徑：",
+      "ja": "ゲームのセーブファイルのパスをコピー：",
+      "en": "Copy the game save file path:"
+    },
+    "app.prompt.step2": {
+      "zh-CN": "点击【打开配置】，粘贴刚刚复制的文件路径并打开。",
+      "zh-TW": "點擊【開啟設定】，貼上剛剛複製的檔案路徑並開啟。",
+      "ja": "【設定を開く】をクリックし、コピーしたファイルパスを貼り付けて開きます。",
+      "en": "Click [Open Config], paste the copied file path and open it."
+    },
+    "app.prompt.step3": {
+      "zh-CN": "修改你想更改的选项。",
+      "zh-TW": "修改你想更改的選項。",
+      "ja": "変更したい設定を修正します。",
+      "en": "Modify the settings you want to change."
+    },
+    "app.prompt.step4": {
+      "zh-CN": "点击【下载配置】，将修改后的配置文件保存到本地磁盘。",
+      "zh-TW": "點擊【下載設定】，將修改後的設定檔案儲存到本機磁碟。",
+      "ja": "【設定を保存】をクリックし、変更した設定ファイルをローカルディスクに保存します。",
+      "en": "Click [Download Config] to save the modified configuration file to your local disk."
+    },
+    "app.prompt.step5": {
+      "zh-CN": "确保游戏已完全关闭，备份您的当前游戏存档文件，用已下载的配置文件替换掉您的当前游戏存档文件。",
+      "zh-TW": "確保遊戲已完全關閉，備份您的當前遊戲存檔檔案，用已下載的設定檔案替換掉您的當前遊戲存檔檔案。",
+      "ja": "ゲームを完全に終了し、現在のセーブファイルをバックアップしてから、ダウンロードした設定ファイルで置き換えてください。",
+      "en": "Make sure the game is completely closed, backup your current save file, and replace it with the downloaded configuration file."
+    },
+    "app.prompt.step6": {
+      "zh-CN": "启动游戏，享受您的修改吧。",
+      "zh-TW": "啟動遊戲，享受您的修改吧。",
+      "ja": "ゲームを起動して、変更をお楽しみください。",
+      "en": "Launch the game and enjoy your modifications."
     },
     "audio.title": {
       "zh-CN": "音频设置",

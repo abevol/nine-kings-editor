@@ -19,6 +19,11 @@ import {
   Person as KingIcon,
   Speed as DifficultyIcon,
   ContentCopy as CopyIcon,
+  InsertDriveFile as FileIcon,
+  Create as EditIcon,
+  GetApp as DownloadIcon,
+  Save as SaveIcon,
+  PlayArrow as PlayIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './utils/settingsHelper';
@@ -198,67 +203,70 @@ function App() {
               mb: 4,
               fontWeight: 'medium'
             }}>
-              {getDefaultTranslation('app.prompt.openFile')}
+              {getDefaultTranslation('app.prompt.title')}
             </Typography>
             <Stack spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
               <Box sx={{ 
                 p: 2,
                 borderRadius: 1,
-                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'action.hover' : 'grey.100',
+                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'grey.800' : 'grey.100',
                 width: '80%'
               }}>
-                <Typography variant="body1" align="center" color="text.secondary">
-                  {getDefaultTranslation('app.prompt.filePath')} `C:\Users\Your Username\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json`
-                </Typography>
-              </Box>
+                <Stack spacing={2}>
+                  {/* Step 1 */}
+                  <Box>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Typography variant="body1" sx={{ whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <FileIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step1')}
+                      </Typography>
+                      <Typography variant="body2" component="span" sx={{ 
+                        bgcolor: (theme) => theme.palette.mode === 'dark' ? 'grey.900' : 'grey.200',
+                        px: 1, 
+                        py: 0.5, 
+                        borderRadius: 1,
+                        fontFamily: 'monospace',
+                        fontWeight: 'medium'
+                      }}>
+                        %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
+                      </Typography>
+                      <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
+                        <IconButton 
+                          onClick={handleCopyPath} 
+                          size="small" 
+                          color={copySuccess ? "success" : "primary"}
+                          sx={{ bgcolor: 'background.paper' }}
+                        >
+                          <CopyIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    </Stack>
+                  </Box>
 
-              <Box sx={{ 
-                p: 2,
-                borderRadius: 1,
-                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'primary.dark' : 'primary.light',
-                width: '80%'
-              }}>
-                <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
-                  <Typography variant="body1" sx={{ fontWeight: 500, color: 'black' }}>
-                    {getDefaultTranslation('app.prompt.inputPath')}
+                  {/* Step 2 */}
+                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <CopyIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step2')}
                   </Typography>
-                  <Typography variant="body2" component="span" sx={{ 
-                    bgcolor: (theme) => theme.palette.mode === 'dark' ? 'primary.main' : 'primary.main',
-                    color: 'black',
-                    px: 1, 
-                    py: 0.5, 
-                    borderRadius: 1,
-                    fontFamily: 'monospace',
-                    fontWeight: 'medium'
-                  }}>
-                    %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
+
+                  {/* Step 3 */}
+                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <EditIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step3')}
                   </Typography>
-                  <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
-                    <IconButton 
-                      onClick={handleCopyPath} 
-                      size="small" 
-                      color={copySuccess ? "success" : "primary"}
-                      sx={{ bgcolor: 'background.paper' }}
-                    >
-                      <CopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
+
+                  {/* Step 4 */}
+                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <DownloadIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step4')}
+                  </Typography>
+
+                  {/* Step 5 */}
+                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'warning.main' }}>
+                    <SaveIcon color="warning" fontSize="small" /> {getDefaultTranslation('app.prompt.step5')}
+                  </Typography>
+
+                  {/* Step 6 */}
+                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'success.main' }}>
+                    <PlayIcon color="success" fontSize="small" /> {getDefaultTranslation('app.prompt.step6')}
+                  </Typography>
                 </Stack>
-              </Box>
-
-              <Box sx={{ 
-                p: 2,
-                borderRadius: 1,
-                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'warning.dark' : 'warning.light',
-                width: '80%'
-              }}>
-                <Typography 
-                  variant="body2" 
-                  align="center" 
-                  sx={{ color: 'black' }}
-                >
-                  {getDefaultTranslation('app.prompt.warning')}
-                </Typography>
               </Box>
             </Stack>
           </Box>
