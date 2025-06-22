@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/nine-kings-editor/static/js/main.3e4d98c9.js",
+    "main.js": "/nine-kings-editor/static/js/main.f82428e3.js",
     "index.html": "/nine-kings-editor/index.html",
-    "main.3e4d98c9.js.map": "/nine-kings-editor/static/js/main.3e4d98c9.js.map"
+    "main.f82428e3.js.map": "/nine-kings-editor/static/js/main.f82428e3.js.map"
   },
   "entrypoints": [
-    "static/js/main.3e4d98c9.js"
+    "static/js/main.f82428e3.js"
   ]
 }
