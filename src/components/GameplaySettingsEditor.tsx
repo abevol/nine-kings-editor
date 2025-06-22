@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper, Typography, Switch, FormControlLabel, Slider } from '@mui/material';
+import { Box, Paper, Typography, Switch, FormControlLabel, Slider, TextField, Divider } from '@mui/material';
 import { NineKingsSettings, GameplaySettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
 import { getDefaultTranslation } from '../utils/translationHelper';
@@ -48,6 +48,46 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
         {getDefaultTranslation('gameplay.title')}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <TextField
+          label={getDefaultTranslation('gameplay.lastPlayedVersion')}
+          value={gameplaySettings.LastPlayedVersion}
+          onChange={(e) => {
+            const newGameplaySettings = {
+              ...gameplaySettings,
+              LastPlayedVersion: e.target.value,
+            };
+            onChange({
+              ...settings,
+              GameplaySettings: {
+                ...settings.GameplaySettings,
+                SerializedValue: stringifySerializedValue(newGameplaySettings),
+              },
+            });
+          }}
+          fullWidth
+          disabled
+        />
+        
+        <FormControlLabel
+          control={
+            <Switch
+              checked={gameplaySettings.SeenEAScreen}
+              onChange={handleBooleanChange('SeenEAScreen')}
+            />
+          }
+          label={getDefaultTranslation('gameplay.seenEAScreen')}
+        />
+        
+        <FormControlLabel
+          control={
+            <Switch
+              checked={gameplaySettings.SeenBeatKingDifficultyPanel}
+              onChange={handleBooleanChange('SeenBeatKingDifficultyPanel')}
+            />
+          }
+          label={getDefaultTranslation('gameplay.seenBeatKingDifficultyPanel')}
+        />
+
         <FormControlLabel
           control={
             <Switch
@@ -127,7 +167,7 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
             onChange={handleSpeedChange}
             min={1}
             max={3}
-            step={0.5}
+            step={1}
             marks
             valueLabelDisplay="auto"
           />

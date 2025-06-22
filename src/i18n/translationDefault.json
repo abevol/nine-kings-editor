@@ -192,6 +192,24 @@
       "ja": "ゲーム速度",
       "en": "Game Speed"
     },
+    "gameplay.lastPlayedVersion": {
+      "zh-CN": "最后游玩版本",
+      "zh-TW": "最後遊玩版本",
+      "ja": "最終プレイバージョン",
+      "en": "Last Played Version"
+    },
+    "gameplay.seenEAScreen": {
+      "zh-CN": "已看过EA提示",
+      "zh-TW": "已看過EA提示",
+      "ja": "EA画面確認済み",
+      "en": "Seen EA Screen"
+    },
+    "gameplay.seenBeatKingDifficultyPanel": {
+      "zh-CN": "已看过难度提示",
+      "zh-TW": "已看過難度提示",
+      "ja": "難易度パネル確認済み",
+      "en": "Seen Difficulty Panel"
+    },
     "king.title": {
       "zh-CN": "国王设置",
       "zh-TW": "國王設定",
