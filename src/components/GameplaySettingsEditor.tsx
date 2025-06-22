@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper, Typography, Switch, FormControlLabel, Slider, TextField, Divider } from '@mui/material';
+import { Box, Paper, Typography, Switch, FormControlLabel, Slider, TextField } from '@mui/material';
 import { NineKingsSettings, GameplaySettings } from '../types/settings';
 import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
 import { getDefaultTranslation } from '../utils/translationHelper';

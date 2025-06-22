@@ -20,6 +20,7 @@ import {
   getPerkTranslation,
   getPerkDescriptionTranslation,
 } from '../utils/translationHelper';
+import { getPerkMaxLevel } from '../utils/perkConfig';
 
 interface KingSettingsEditorProps {
   settings: NineKingsSettings;
@@ -52,6 +53,12 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
   };
 
   const handlePerkChange = (kingKey: string, perkName: string, level: number) => {
+    // Get max level from config
+    const maxLevel = getPerkMaxLevel(perkName);
+
+    // Ensure level is within bounds
+    const boundedLevel = Math.max(0, Math.min(level, maxLevel));
+
     const newKingSettings = {
       ...kingSettings,
       [kingKey]: {
@@ -60,7 +67,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
           ...kingSettings[kingKey].Perks,
           [perkName]: {
             ...kingSettings[kingKey].Perks[perkName],
-            Level: level,
+            Level: boundedLevel,
           },
         },
       },
@@ -73,6 +80,18 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
         SerializedValue: stringifySerializedValue(newKingSettings),
       },
     });
+  };
+
+  /**
+   * 生成天赋等级输入框的属性配置
+   * @param perkName 天赋名称
+   */
+  const getPerkInputProps = (perkName: string) => {
+    const maxLevel = getPerkMaxLevel(perkName);
+    return {
+      min: 0,
+      ...(maxLevel !== Infinity && { max: maxLevel })
+    };
   };
 
   const renderKingContent = (kingKey: string, king: KingSettings) => (
@@ -134,7 +153,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                 handlePerkChange(kingKey, perkName, parseInt(e.target.value))
               }
               fullWidth
-              inputProps={{ min: 0, max: 3 }}
+              inputProps={getPerkInputProps(perkName)}
               InputLabelProps={{
                 style: { fontSize: '1.2rem' }
               }}
