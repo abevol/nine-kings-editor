@@ -316,7 +316,7 @@ function App() {
           </>
         )}
       </Container>
-      <Dialog open={helpDialogOpen} onClose={handleCloseHelp} maxWidth="md">
+      <Dialog open={helpDialogOpen} onClose={handleCloseHelp} maxWidth={false}>
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {getDefaultTranslation('app.prompt.title')}
           <IconButton size="small" onClick={handleCloseHelp}>
