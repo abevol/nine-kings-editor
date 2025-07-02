@@ -180,6 +180,12 @@
       "ja": "血液表現",
       "en": "Show Blood Effects"
     },
+    "gameplay.disableEndlessRed": {
+      "zh-CN": "关闭无尽模式红色特效",
+      "zh-TW": "關閉無盡之紅濾鏡",
+      "ja": "エンドレスモードの赤色化効果を無効化",
+      "en": "Disable Endless Red"
+    },
     "gameplay.enemySlowTime": {
       "zh-CN": "敌人减速效果",
       "zh-TW": "敵人減速效果",

@@ -36,6 +36,7 @@ export interface GameplaySettings {
   AutoAttackEnabled: boolean;
   TroopAnimations: boolean;
   BloodEnabled: boolean;
+  DisableEndlessRed: boolean;
   EnableEnemySlowTime: boolean;
   Speed: number;
 }

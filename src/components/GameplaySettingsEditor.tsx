@@ -154,6 +154,15 @@ const GameplaySettingsEditor: React.FC<GameplaySettingsEditorProps> = ({ setting
         <FormControlLabel
           control={
             <Switch
+              checked={gameplaySettings.DisableEndlessRed}
+              onChange={handleBooleanChange('DisableEndlessRed')}
+            />
+          }
+          label={getDefaultTranslation('gameplay.disableEndlessRed')}
+        />
+        <FormControlLabel
+          control={
+            <Switch
               checked={gameplaySettings.EnableEnemySlowTime}
               onChange={handleBooleanChange('EnableEnemySlowTime')}
             />
