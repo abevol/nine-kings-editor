@@ -12,6 +12,9 @@ import {
   IconButton,
   Tooltip,
   Stack,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from '@mui/material';
 import {
   VolumeUp as AudioIcon,
@@ -25,6 +28,8 @@ import {
   Save as SaveIcon,
   PlayArrow as PlayIcon,
   BugReport as BugReportIcon,
+  HelpOutline as HelpIcon,
+  Close as CloseIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './utils/settingsHelper';
@@ -67,10 +72,85 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
+// 使用说明组件
+const UsageInstructions: React.FC<{ copySuccess: boolean; handleCopyPath: () => Promise<void>; compact?: boolean }> = ({
+  copySuccess,
+  handleCopyPath,
+  compact = false
+}) => {
+  return (
+    <Stack spacing={compact ? 1 : 2} sx={{ width: '100%', alignItems: compact ? 'flex-start' : 'center' }}>
+      <Box sx={{ 
+        p: compact ? 1 : 2,
+        borderRadius: 1,
+        bgcolor: (theme) => theme.palette.mode === 'dark' ? 'action.hover' : 'grey.100',
+        width: compact ? '100%' : '80%'
+      }}>
+        <Stack spacing={compact ? 1 : 2}>
+          {/* Step 1 */}
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Typography variant="body1" sx={{ whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 1 }}>
+                <FileIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step1')}
+              </Typography>
+              <Typography variant="body2" component="span" sx={{ 
+                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'grey.900' : 'grey.200',
+                px: 1, 
+                py: 0.5, 
+                borderRadius: 1,
+                fontFamily: 'monospace',
+                fontWeight: 'medium'
+              }}>
+                %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
+              </Typography>
+              <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
+                <IconButton 
+                  onClick={handleCopyPath} 
+                  size="small" 
+                  color={copySuccess ? "success" : "primary"}
+                  sx={{ bgcolor: 'background.paper' }}
+                >
+                  <CopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Stack>
+          </Box>
+
+          {/* Step 2 */}
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <CopyIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step2')}
+          </Typography>
+
+          {/* Step 3 */}
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <EditIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step3')}
+          </Typography>
+
+          {/* Step 4 */}
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <DownloadIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step4')}
+          </Typography>
+
+          {/* Step 5 */}
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'warning.main' }}>
+            <SaveIcon color="warning" fontSize="small" /> {getDefaultTranslation('app.prompt.step5')}
+          </Typography>
+
+          {/* Step 6 */}
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'success.main' }}>
+            <PlayIcon color="success" fontSize="small" /> {getDefaultTranslation('app.prompt.step6')}
+          </Typography>
+        </Stack>
+      </Box>
+    </Stack>
+  );
+};
+
 function App() {
   const [settings, setSettings] = useState<NineKingsSettings | null>(null);
   const [currentTab, setCurrentTab] = useState(0);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [helpDialogOpen, setHelpDialogOpen] = useState(false);
   const [, forceUpdate] = useState({});
 
   useEffect(() => {
@@ -139,12 +219,33 @@ function App() {
     }
   };
 
+  const handleHelpClick = () => {
+    setHelpDialogOpen(true);
+  };
+  
+  const handleCloseHelp = () => {
+    setHelpDialogOpen(false);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
             {getDefaultTranslation('app.title')}
+            <Tooltip 
+              title={getDefaultTranslation('app.help.tooltip')}
+              placement="right"
+            >
+              <IconButton 
+                color="inherit" 
+                size="small" 
+                sx={{ ml: 0.5 }}
+                onClick={handleHelpClick}
+              >
+                <HelpIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
           </Typography>
           <Button color="inherit" onClick={handleFileClick}>
             {getDefaultTranslation('app.buttons.openConfig')}
@@ -203,7 +304,7 @@ function App() {
             </TabPanel>
           </>
         ) : (
-          <Box>
+          <>
             <Typography variant="h5" align="center" sx={{ 
               mt: 8,
               mb: 4,
@@ -211,73 +312,21 @@ function App() {
             }}>
               {getDefaultTranslation('app.prompt.title')}
             </Typography>
-            <Stack spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
-              <Box sx={{ 
-                p: 2,
-                borderRadius: 1,
-                bgcolor: (theme) => theme.palette.mode === 'dark' ? 'action.hover' : 'grey.100',
-                width: '80%'
-              }}>
-                <Stack spacing={2}>
-                  {/* Step 1 */}
-                  <Box>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Typography variant="body1" sx={{ whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <FileIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step1')}
-                      </Typography>
-                      <Typography variant="body2" component="span" sx={{ 
-                        bgcolor: (theme) => theme.palette.mode === 'dark' ? 'grey.900' : 'grey.200',
-                        px: 1, 
-                        py: 0.5, 
-                        borderRadius: 1,
-                        fontFamily: 'monospace',
-                        fontWeight: 'medium'
-                      }}>
-                        %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
-                      </Typography>
-                      <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
-                        <IconButton 
-                          onClick={handleCopyPath} 
-                          size="small" 
-                          color={copySuccess ? "success" : "primary"}
-                          sx={{ bgcolor: 'background.paper' }}
-                        >
-                          <CopyIcon fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
-                    </Stack>
-                  </Box>
-
-                  {/* Step 2 */}
-                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <CopyIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step2')}
-                  </Typography>
-
-                  {/* Step 3 */}
-                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <EditIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step3')}
-                  </Typography>
-
-                  {/* Step 4 */}
-                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <DownloadIcon color="primary" fontSize="small" /> {getDefaultTranslation('app.prompt.step4')}
-                  </Typography>
-
-                  {/* Step 5 */}
-                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'warning.main' }}>
-                    <SaveIcon color="warning" fontSize="small" /> {getDefaultTranslation('app.prompt.step5')}
-                  </Typography>
-
-                  {/* Step 6 */}
-                  <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'success.main' }}>
-                    <PlayIcon color="success" fontSize="small" /> {getDefaultTranslation('app.prompt.step6')}
-                  </Typography>
-                </Stack>
-              </Box>
-            </Stack>
-          </Box>
+            <UsageInstructions copySuccess={copySuccess} handleCopyPath={handleCopyPath} />
+          </>
         )}
       </Container>
+      <Dialog open={helpDialogOpen} onClose={handleCloseHelp} maxWidth="md">
+        <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {getDefaultTranslation('app.prompt.title')}
+          <IconButton size="small" onClick={handleCloseHelp}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <UsageInstructions copySuccess={copySuccess} handleCopyPath={handleCopyPath} compact={true} />
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

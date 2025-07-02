@@ -108,6 +108,18 @@
       "ja": "ゲームを起動して、変更をお楽しみください。",
       "en": "Launch the game and enjoy your modifications."
     },
+    "app.help.tooltip": {
+      "zh-CN": "使用说明",
+      "zh-TW": "使用說明",
+      "ja": "使用方法",
+      "en": "Usage Instructions"
+    },
+    "app.help.close": {
+      "zh-CN": "关闭",
+      "zh-TW": "關閉",
+      "ja": "閉じる",
+      "en": "Close"
+    },
     "audio.title": {
       "zh-CN": "音频设置",
       "zh-TW": "音訊設定",
