@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "extract-translations": "tsx src/scripts/extractTranslations.ts"
+    "extract-translations": "tsx src/scripts/extractTranslations.ts",
+    "deserializeSettings": "node src/scripts/deserializeSettings.js"
   },
   "eslintConfig": {
     "extends": [
