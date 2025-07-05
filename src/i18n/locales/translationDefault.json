@@ -261,7 +261,7 @@
     "king.legacyXP": {
       "zh-CN": "已升级经验系统",
       "zh-TW": "已升級經驗系統",
-      "ja": "経験値システムをアップグレード済み",
+      "ja": "経験値系統を更新済み",
       "en": "Upgraded XP System"
     },
     "king.legacyXP.tooltip": {
@@ -309,7 +309,7 @@
     "king.newUnlockedPerk": {
       "zh-CN": "有新解锁的天赋",
       "zh-TW": "有新解鎖的天賦",
-      "ja": "新しい特性がアンロック",
+      "ja": "新規解放特性有り",
       "en": "New Perk Unlocked"
     },
     "king.newUnlockedPerk.tooltip": {
@@ -321,7 +321,7 @@
     "king.unlockedPerks": {
       "zh-CN": "已解锁天赋数量",
       "zh-TW": "已解鎖天賦數量",
-      "ja": "アンロック済み特性数",
+      "ja": "解放済特性数",
       "en": "Unlocked Perks Count"
     },
     "king.perksUsed": {
