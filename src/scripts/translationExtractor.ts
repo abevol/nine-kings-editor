@@ -116,7 +116,7 @@ function generateTranslationLibrary(
 
 // 主函数
 export function extractTranslations() {
-  const i2Path = path.join(__dirname, '../data/I2Languages.asset');
+  const i2Path = path.join(__dirname, '../../data/I2Languages.asset');
   const outputPath = path.join(__dirname, '../i18n/locales/translationLibrary.json');
   try {
     // 1. 提取支持的语言列表
