@@ -34,6 +34,31 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
 
   const [selectedKing, setSelectedKing] = useState<string>(Object.keys(kingSettings)[0]);
 
+  // 添加动画样式
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(0.95);
+          opacity: 0.5;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   const handleKingChange = (kingKey: string, field: keyof KingSettings, value: any) => {
     const newKingSettings = {
       ...kingSettings,
@@ -133,6 +158,41 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
               />
             }
             label={getDefaultTranslation('king.legacyXP')}
+          />
+        </Tooltip>
+        <Tooltip title={getDefaultTranslation('king.newUnlockedPerk.tooltip')}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={king.NewUnlockedPerk}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleKingChange(kingKey, 'NewUnlockedPerk', e.target.checked)
+                }
+                color="warning"
+              />
+            }
+            label={
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography 
+                  color={king.NewUnlockedPerk ? 'warning.main' : 'text.primary'}
+                  sx={{ 
+                    display: 'flex',
+                    alignItems: 'center',
+                    '&::after': king.NewUnlockedPerk ? {
+                      content: '""',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: 'warning.main',
+                      marginLeft: '8px',
+                      animation: 'pulse 1.5s infinite'
+                    } : {}
+                  }}
+                >
+                  {getDefaultTranslation('king.newUnlockedPerk')}
+                </Typography>
+              </Box>
+            }
           />
         </Tooltip>
       </Box>

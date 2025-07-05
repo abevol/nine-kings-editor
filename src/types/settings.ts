@@ -70,6 +70,7 @@ export interface KingSettings {
   UpgradedFromLegacyXPSystem: boolean;
   TotalXP: number;
   UsedPerkPoints: number;
+  NewUnlockedPerk: boolean;
   Perks: { [key: string]: Perk };
   DifficultiesWon: string[];
 }

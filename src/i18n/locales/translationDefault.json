@@ -305,6 +305,18 @@
       "zh-TW": "相容：",
       "ja": "対応：",
       "en": "Compatible with: "
+    },
+    "king.newUnlockedPerk": {
+      "zh-CN": "有新解锁的天赋",
+      "zh-TW": "有新解鎖的天賦",
+      "ja": "新しい特性がアンロック",
+      "en": "New Perk Unlocked"
+    },
+    "king.newUnlockedPerk.tooltip": {
+      "zh-CN": "标记是否有新解锁但尚未查看的天赋",
+      "zh-TW": "標記是否有新解鎖但尚未查看的天賦",
+      "ja": "新しくアンロックされ、まだ確認していない特性があるかどうかを示します",
+      "en": "Indicates whether there are newly unlocked perks that haven't been viewed"
     }
   }
 } 
