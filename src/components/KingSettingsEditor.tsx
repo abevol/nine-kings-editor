@@ -99,28 +99,43 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
       <Typography variant="h6" gutterBottom>
         {getKingTranslation(kingKey)}
       </Typography>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={king.IsEnabled}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleKingChange(kingKey, 'IsEnabled', e.target.checked)
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={king.IsEnabled}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleKingChange(kingKey, 'IsEnabled', e.target.checked)
+              }
+            />
+          }
+          label={getDefaultTranslation('king.enabled')}
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={king.HasVictory}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleKingChange(kingKey, 'HasVictory', e.target.checked)
+              }
+            />
+          }
+          label={getDefaultTranslation('king.hasVictory')}
+        />
+        <Tooltip title={getDefaultTranslation('king.legacyXP.tooltip')}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={king.UpgradedFromLegacyXPSystem}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleKingChange(kingKey, 'UpgradedFromLegacyXPSystem', e.target.checked)
+                }
+              />
             }
+            label={getDefaultTranslation('king.legacyXP')}
           />
-        }
-        label={getDefaultTranslation('king.enabled')}
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={king.HasVictory}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleKingChange(kingKey, 'HasVictory', e.target.checked)
-            }
-          />
-        }
-        label={getDefaultTranslation('king.hasVictory')}
-      />
+        </Tooltip>
+      </Box>
       <TextField
         label={getDefaultTranslation('king.totalXP')}
         type="number"

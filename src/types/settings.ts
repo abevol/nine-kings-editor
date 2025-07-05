@@ -67,6 +67,7 @@ export interface KingSettings {
   HasVictory: boolean;
   IsDemoEnabled: boolean;
   SeenUnlockScreen: boolean;
+  UpgradedFromLegacyXPSystem: boolean;
   TotalXP: number;
   UsedPerkPoints: number;
   Perks: { [key: string]: Perk };

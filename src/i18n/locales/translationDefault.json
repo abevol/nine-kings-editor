@@ -258,6 +258,18 @@
       "ja": "特性",
       "en": "Perks"
     },
+    "king.legacyXP": {
+      "zh-CN": "已升级经验系统",
+      "zh-TW": "已升級經驗系統",
+      "ja": "経験値システムをアップグレード済み",
+      "en": "Upgraded XP System"
+    },
+    "king.legacyXP.tooltip": {
+      "zh-CN": "标记此国王是否已从旧版经验系统升级",
+      "zh-TW": "標記此國王是否已從舊版經驗系統升級",
+      "ja": "この王様が旧経験値システムからアップグレードされたかどうかを示します",
+      "en": "Indicates whether this king has been upgraded from the legacy XP system"
+    },
     "difficulty.title": {
       "zh-CN": "难度设置",
       "zh-TW": "難度設定",
