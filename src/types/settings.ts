@@ -61,6 +61,13 @@ export interface Perk {
   Level: number;
 }
 
+export interface PerkUsed {
+  x: number;
+  y: number;
+  perkTerm: string;
+  level: number;
+}
+
 export interface KingSettings {
   King: number;
   IsEnabled: boolean;
@@ -73,6 +80,7 @@ export interface KingSettings {
   NewUnlockedPerk: boolean;
   UnlockedPerksCount: number;
   Perks: { [key: string]: Perk };
+  PerksUsed: PerkUsed[];
   DifficultiesWon: string[];
 }
 

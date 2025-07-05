@@ -323,6 +323,36 @@
       "zh-TW": "已解鎖天賦數量",
       "ja": "アンロック済み特性数",
       "en": "Unlocked Perks Count"
+    },
+    "king.perksUsed": {
+      "zh-CN": "已使用的天赋",
+      "zh-TW": "已使用的天賦",
+      "ja": "使用済み特性",
+      "en": "Perks Used"
+    },
+    "king.perksUsed.x": {
+      "zh-CN": "坐标X",
+      "zh-TW": "座標X",
+      "ja": "座標X",
+      "en": "X"
+    },
+    "king.perksUsed.y": {
+      "zh-CN": "坐标Y",
+      "zh-TW": "座標Y",
+      "ja": "座標Y",
+      "en": "Y"
+    },
+    "king.perksUsed.perkTerm": {
+      "zh-CN": "天赋",
+      "zh-TW": "天賦",
+      "ja": "特性",
+      "en": "Perk"
+    },
+    "king.perksUsed.level": {
+      "zh-CN": "等级",
+      "zh-TW": "等級",
+      "ja": "レベル",
+      "en": "Level"
     }
   }
 } 

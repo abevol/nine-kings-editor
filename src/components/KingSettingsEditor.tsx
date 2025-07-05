@@ -248,6 +248,39 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
           </Tooltip>
         ))}
       </Box>
+      <Typography variant="h6" gutterBottom>
+        {getDefaultTranslation('king.perksUsed')}
+      </Typography>
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+        {king.PerksUsed.map((perk, idx) => (
+          <Tooltip
+            key={idx}
+            title={
+              <Typography style={{ fontSize: '1.0rem', whiteSpace: 'pre-wrap' }}>
+                {getPerkDescriptionTranslation(perk.perkTerm)}
+              </Typography>
+            }
+            placement="top"
+            arrow
+          >
+            <TextField
+              label={getPerkTranslation(perk.perkTerm)}
+              type="number"
+              value={perk.level}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                const newLevel = parseInt(e.target.value) || 0;
+                const newPerksUsed = [...king.PerksUsed];
+                newPerksUsed[idx] = { ...perk, level: newLevel };
+                handleKingChange(kingKey, 'PerksUsed', newPerksUsed);
+              }}
+              fullWidth
+              InputLabelProps={{
+                style: { fontSize: '1.2rem' }
+              }}
+            />
+          </Tooltip>
+        ))}
+      </Box>
     </Box>
   );
 
