@@ -32,8 +32,8 @@ import {
   Close as CloseIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
-import { loadSettings, downloadSettings } from './utils/settingsHelper';
-import { getDefaultTranslation } from './utils/translationHelper';
+import { loadSettings, downloadSettings } from './services/settingsService';
+import { getDefaultTranslation } from './i18n/translationHelper';
 import AudioSettingsEditor from './components/AudioSettingsEditor';
 import GameplaySettingsEditor from './components/GameplaySettingsEditor';
 import KingSettingsEditor from './components/KingSettingsEditor';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Paper, Typography, Switch, FormControlLabel, Slider, TextField } from '@mui/material';
 import { NineKingsSettings, GameplaySettings } from '../types/settings';
-import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
-import { getDefaultTranslation } from '../utils/translationHelper';
+import { parseSerializedValue, stringifySerializedValue } from '../services/settingsService';
+import { getDefaultTranslation } from '../i18n/translationHelper';
 
 interface GameplaySettingsEditorProps {
   settings: NineKingsSettings;

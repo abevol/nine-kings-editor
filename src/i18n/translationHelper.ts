@@ -1,5 +1,5 @@
-import defaultTranslations from '../i18n/translationDefault.json';
-import libraryTranslations from '../i18n/translationLibrary.json';
+import defaultTranslations from './locales/translationDefault.json';
+import libraryTranslations from './locales/translationLibrary.json';
 import { getCurrentLanguage } from './languageManager';
 
 // 定义翻译条目的类型

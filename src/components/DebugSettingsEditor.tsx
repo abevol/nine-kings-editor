@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, FormControlLabel, Switch, Typography, Paper } from '@mui/material';
-import { getDefaultTranslation } from '../utils/translationHelper';
+import { getDefaultTranslation } from '../i18n/translationHelper';
 
 interface DebugSettingsEditorProps {
   settings: {

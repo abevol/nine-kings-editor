@@ -1,5 +1,5 @@
-import defaultTranslations from '../i18n/translationDefault.json';
-import libraryTranslations from '../i18n/translationLibrary.json';
+import defaultTranslations from './locales/translationDefault.json';
+import libraryTranslations from './locales/translationLibrary.json';
 
 // 本地存储中语言设置的键名
 const LANGUAGE_STORAGE_KEY = 'nine_kings_editor_language';

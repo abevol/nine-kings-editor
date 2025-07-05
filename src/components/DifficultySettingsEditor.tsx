@@ -12,8 +12,8 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { NineKingsSettings, DifficultySettings } from '../types/settings';
-import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
-import { getDefaultTranslation, getDifficultyTranslation } from '../utils/translationHelper';
+import { parseSerializedValue, stringifySerializedValue } from '../services/settingsService';
+import { getDefaultTranslation, getDifficultyTranslation } from '../i18n/translationHelper';
 
 interface DifficultySettingsEditorProps {
   settings: NineKingsSettings;

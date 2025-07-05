@@ -11,7 +11,7 @@ import {
   setCurrentLanguage,
   getSupportedLanguages,
   getLanguageLocalName,
-} from '../utils/languageManager';
+} from '../i18n/languageManager';
 
 const LanguageSelector: React.FC = () => {
   const [currentLanguage, setLanguageState] = useState(getCurrentLanguage());

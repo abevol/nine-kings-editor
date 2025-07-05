@@ -1,4 +1,4 @@
-import { extractTranslations } from '../utils/translationExtractor';
+import { extractTranslations } from './translationExtractor';
  
 // 运行提取器
 extractTranslations(); 

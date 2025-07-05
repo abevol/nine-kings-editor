@@ -13,14 +13,14 @@ import {
   ListItemButton,
 } from '@mui/material';
 import { NineKingsSettings, KingSettings } from '../types/settings';
-import { parseSerializedValue, stringifySerializedValue } from '../utils/settingsHelper';
+import { parseSerializedValue, stringifySerializedValue } from '../services/settingsService';
 import {
   getDefaultTranslation,
   getKingTranslation,
   getPerkTranslation,
   getPerkDescriptionTranslation,
-} from '../utils/translationHelper';
-import { getPerkMaxLevel } from '../utils/perkConfig';
+} from '../i18n/translationHelper';
+import { getPerkMaxLevel } from '../config/perkConfig';
 
 interface KingSettingsEditorProps {
   settings: NineKingsSettings;

@@ -14,4 +14,4 @@ export const DEFAULT_MAX_LEVEL = Infinity;
 
 export function getPerkMaxLevel(perkName: string): number {
   return PERK_CONFIGS[perkName]?.maxLevel ?? DEFAULT_MAX_LEVEL;
-}
+} 
