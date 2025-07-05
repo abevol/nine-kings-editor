@@ -196,15 +196,27 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
           />
         </Tooltip>
       </Box>
-      <TextField
-        label={getDefaultTranslation('king.totalXP')}
-        type="number"
-        value={king.TotalXP}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleKingChange(kingKey, 'TotalXP', parseInt(e.target.value))
-        }
-        fullWidth
-      />
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        <TextField
+          label={getDefaultTranslation('king.totalXP')}
+          type="number"
+          value={king.TotalXP}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleKingChange(kingKey, 'TotalXP', parseInt(e.target.value))
+          }
+          sx={{ flex: 1 }}
+        />
+        <TextField
+          label={getDefaultTranslation('king.unlockedPerks')}
+          type="number"
+          value={king.UnlockedPerksCount}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleKingChange(kingKey, 'UnlockedPerksCount', parseInt(e.target.value))
+          }
+          sx={{ flex: 1 }}
+          slotProps={{ input: { inputProps: { min: 0 } } }}
+        />
+      </Box>
       <Typography variant="h6" gutterBottom>
         {getDefaultTranslation('king.perks')}
       </Typography>

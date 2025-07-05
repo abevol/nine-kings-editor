@@ -71,6 +71,7 @@ export interface KingSettings {
   TotalXP: number;
   UsedPerkPoints: number;
   NewUnlockedPerk: boolean;
+  UnlockedPerksCount: number;
   Perks: { [key: string]: Perk };
   DifficultiesWon: string[];
 }

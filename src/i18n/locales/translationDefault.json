@@ -317,6 +317,12 @@
       "zh-TW": "標記是否有新解鎖但尚未查看的天賦",
       "ja": "新しくアンロックされ、まだ確認していない特性があるかどうかを示します",
       "en": "Indicates whether there are newly unlocked perks that haven't been viewed"
+    },
+    "king.unlockedPerks": {
+      "zh-CN": "已解锁天赋数量",
+      "zh-TW": "已解鎖天賦數量",
+      "ja": "アンロック済み特性数",
+      "en": "Unlocked Perks Count"
     }
   }
 } 
