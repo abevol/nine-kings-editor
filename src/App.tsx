@@ -15,6 +15,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  Chip,
 } from '@mui/material';
 import {
   VolumeUp as AudioIcon,
@@ -30,21 +31,18 @@ import {
   BugReport as BugReportIcon,
   HelpOutline as HelpIcon,
   Close as CloseIcon,
+  CheckCircleOutline as CompatibleIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './services/settingsService';
 import { getDefaultTranslation } from './i18n/translationHelper';
+import { appConfig } from './config/appConfig';
 import AudioSettingsEditor from './components/AudioSettingsEditor';
 import GameplaySettingsEditor from './components/GameplaySettingsEditor';
 import KingSettingsEditor from './components/KingSettingsEditor';
 import DifficultySettingsEditor from './components/DifficultySettingsEditor';
 import LanguageSelector from './components/LanguageSelector';
 import DebugSettingsEditor from './components/DebugSettingsEditor';
-
-const getDefaultConfigPath = () => {
-  const userProfile = process.env.USERPROFILE || '';
-  return `${userProfile}\\AppData\\LocalLow\\SadSocket\\9Kings\\9KingsSettings.json`;
-};
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -101,7 +99,7 @@ const UsageInstructions: React.FC<{ copySuccess: boolean; handleCopyPath: () => 
                 fontFamily: 'monospace',
                 fontWeight: 'medium'
               }}>
-                %USERPROFILE%\AppData\LocalLow\SadSocket\9Kings\9KingsSettings.json
+                {appConfig.paths.defaultSavePath}
               </Typography>
               <Tooltip title={copySuccess ? getDefaultTranslation('app.prompt.copied') : getDefaultTranslation('app.prompt.copyPath')}>
                 <IconButton 
@@ -183,18 +181,6 @@ function App() {
         setSettings(loadedSettings);
       }
     };
-
-    // 设置默认文件路径
-    try {
-      input.webkitdirectory = false;
-      const defaultPath = getDefaultConfigPath();
-      if (defaultPath) {
-        input.setAttribute('nwworkingdir', defaultPath);
-      }
-    } catch (error) {
-      console.warn('Failed to set default path:', error);
-    }
-
     input.click();
   };
 
@@ -209,7 +195,7 @@ function App() {
   };
 
   const handleCopyPath = async () => {
-    const path = '%USERPROFILE%\\AppData\\LocalLow\\SadSocket\\9Kings\\9KingsSettings.json';
+    const path = appConfig.paths.defaultSavePath;
     try {
       await navigator.clipboard.writeText(path);
       setCopySuccess(true);
@@ -246,6 +232,19 @@ function App() {
                 <HelpIcon fontSize="small" />
               </IconButton>
             </Tooltip>
+            <Chip
+              icon={<CompatibleIcon />}
+              label={`${getDefaultTranslation('app.compatibility.compatible')}${appConfig.version.compatibleVersion}`}
+              size="small"
+              color="success"
+              sx={{ 
+                ml: 2,
+                bgcolor: 'success.dark',
+                '& .MuiChip-icon': {
+                  color: 'inherit'
+                }
+              }}
+            />
           </Typography>
           <Button color="inherit" onClick={handleFileClick}>
             {getDefaultTranslation('app.buttons.openConfig')}

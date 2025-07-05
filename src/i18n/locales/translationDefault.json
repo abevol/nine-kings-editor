@@ -287,6 +287,12 @@
       "zh-TW": "偵錯模式",
       "ja": "デバッグモード",
       "en": "Debug Mode"
+    },
+    "app.compatibility.compatible": {
+      "zh-CN": "兼容：",
+      "zh-TW": "相容：",
+      "ja": "対応：",
+      "en": "Compatible with: "
     }
   }
 } 
