@@ -19,6 +19,7 @@ import {
   Menu,
   MenuItem,
   ButtonGroup,
+  Link,
 } from '@mui/material';
 import {
   ContentCopy as CopyIcon,
@@ -31,6 +32,7 @@ import {
   Close as CloseIcon,
   CheckCircleOutline as CompatibleIcon,
   ArrowDropDown as ArrowDropDownIcon,
+  GitHub as GitHubIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './services/settingsService';
@@ -303,6 +305,18 @@ function App() {
             </MenuItem>
           </Menu>
           <Box sx={{ width: 16 }} />
+          <Tooltip title="GitHub">
+            <IconButton
+              color="inherit"
+              component={Link}
+              href="https://github.com/abevol/nine-kings-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon />
+            </IconButton>
+          </Tooltip>
+          <Box sx={{ width: 8 }} />
           <LanguageSelector />
         </Toolbar>
       </AppBar>
