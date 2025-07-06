@@ -274,6 +274,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
                 handleKingChange(kingKey, 'PerksUsed', newPerksUsed);
               }}
               fullWidth
+              inputProps={getPerkInputProps(perk.perkTerm)}
               InputLabelProps={{
                 style: { fontSize: '1.2rem' }
               }}

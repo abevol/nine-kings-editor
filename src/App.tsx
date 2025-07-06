@@ -170,13 +170,6 @@ function App() {
     };
   }, []);
 
-  // 当设置加载时，重置标签页到第一个可用的标签
-  useEffect(() => {
-    if (settings) {
-      setCurrentTab(0);
-    }
-  }, [settings]);
-
   const handleFileClick = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -187,6 +180,7 @@ function App() {
       if (file) {
         const loadedSettings = await loadSettings(file);
         setSettings(loadedSettings);
+        setCurrentTab(0); // 在成功加载配置文件后重置标签页
       }
     };
     input.click();
