@@ -353,6 +353,12 @@
       "zh-TW": "等級",
       "ja": "レベル",
       "en": "Level"
+    },
+    "app.error.noSettings": {
+      "zh-CN": "此配置文件中没有可编辑的设置项",
+      "zh-TW": "此配置文件中沒有可編輯的設置項",
+      "ja": "この設定ファイルには編集可能な項目がありません",
+      "en": "No editable settings found in this configuration file"
     }
   }
 } 

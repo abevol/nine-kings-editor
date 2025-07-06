@@ -18,17 +18,12 @@ import {
   Chip,
 } from '@mui/material';
 import {
-  VolumeUp as AudioIcon,
-  Settings as GameplayIcon,
-  Person as KingIcon,
-  Speed as DifficultyIcon,
   ContentCopy as CopyIcon,
   InsertDriveFile as FileIcon,
   Create as EditIcon,
   GetApp as DownloadIcon,
   Save as SaveIcon,
   PlayArrow as PlayIcon,
-  BugReport as BugReportIcon,
   HelpOutline as HelpIcon,
   Close as CloseIcon,
   CheckCircleOutline as CompatibleIcon,
@@ -37,12 +32,8 @@ import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './services/settingsService';
 import { getDefaultTranslation } from './i18n/translationHelper';
 import { appConfig } from './config/appConfig';
-import AudioSettingsEditor from './components/AudioSettingsEditor';
-import GameplaySettingsEditor from './components/GameplaySettingsEditor';
-import KingSettingsEditor from './components/KingSettingsEditor';
-import DifficultySettingsEditor from './components/DifficultySettingsEditor';
+import { createTabConfigs } from './config/tabConfig';
 import LanguageSelector from './components/LanguageSelector';
-import DebugSettingsEditor from './components/DebugSettingsEditor';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -151,6 +142,11 @@ function App() {
   const [helpDialogOpen, setHelpDialogOpen] = useState(false);
   const [, forceUpdate] = useState({});
 
+  // 获取可用的标签页
+  const availableTabs = settings
+    ? createTabConfigs(setSettings).filter(tab => settings[tab.key] !== undefined)
+    : [];
+
   useEffect(() => {
     // 监听语言变化事件，强制重新渲染
     const handleLanguageChange = () => {
@@ -168,6 +164,13 @@ function App() {
       window.removeEventListener('languagechange', handleLanguageChange);
     };
   }, []);
+
+  // 当设置加载时，重置标签页到第一个可用的标签
+  useEffect(() => {
+    if (settings) {
+      setCurrentTab(0);
+    }
+  }, [settings]);
 
   const handleFileClick = () => {
     const input = document.createElement('input');
@@ -258,50 +261,38 @@ function App() {
       </AppBar>
       <Container maxWidth="lg">
         {settings ? (
-          <>
-            <Paper sx={{ mt: 2 }}>
-              <Tabs
-                value={currentTab}
-                onChange={handleTabChange}
-                variant="fullWidth"
-                indicatorColor="primary"
-                textColor="primary"
-              >
-                <Tab icon={<AudioIcon />} label={getDefaultTranslation('app.tabs.audio')} />
-                <Tab icon={<GameplayIcon />} label={getDefaultTranslation('app.tabs.gameplay')} />
-                <Tab icon={<KingIcon />} label={getDefaultTranslation('app.tabs.king')} />
-                <Tab icon={<DifficultyIcon />} label={getDefaultTranslation('app.tabs.difficulty')} />
-                <Tab icon={<BugReportIcon />} label={getDefaultTranslation('app.tabs.debug')} />
-              </Tabs>
-            </Paper>
-            <TabPanel value={currentTab} index={0}>
-              <AudioSettingsEditor
-                settings={settings}
-                onChange={setSettings}
-              />
-            </TabPanel>
-            <TabPanel value={currentTab} index={1}>
-              <GameplaySettingsEditor
-                settings={settings}
-                onChange={setSettings}
-              />
-            </TabPanel>
-            <TabPanel value={currentTab} index={2}>
-              <KingSettingsEditor
-                settings={settings}
-                onChange={setSettings}
-              />
-            </TabPanel>
-            <TabPanel value={currentTab} index={3}>
-              <DifficultySettingsEditor
-                settings={settings}
-                onChange={setSettings}
-              />
-            </TabPanel>
-            <TabPanel value={currentTab} index={4}>
-              <DebugSettingsEditor settings={settings} onSettingsChange={setSettings} />
-            </TabPanel>
-          </>
+          availableTabs.length > 0 ? (
+            <>
+              <Paper sx={{ mt: 2 }}>
+                <Tabs
+                  value={currentTab}
+                  onChange={handleTabChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                >
+                  {availableTabs.map((tab, index) => (
+                    <Tab 
+                      key={tab.key} 
+                      icon={tab.icon} 
+                      label={getDefaultTranslation(tab.label)} 
+                    />
+                  ))}
+                </Tabs>
+              </Paper>
+              <TabPanel value={currentTab} index={currentTab}>
+                {React.createElement(availableTabs[currentTab].component, {
+                  settings,
+                  onChange: setSettings,
+                  ...availableTabs[currentTab].props
+                })}
+              </TabPanel>
+            </>
+          ) : (
+            <Typography variant="h6" align="center" sx={{ mt: 4 }}>
+              {getDefaultTranslation('app.error.noSettings')}
+            </Typography>
+          )
         ) : (
           <>
             <Typography variant="h5" align="center" sx={{ 
