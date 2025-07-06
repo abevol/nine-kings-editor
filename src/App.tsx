@@ -16,6 +16,9 @@ import {
   DialogTitle,
   DialogContent,
   Chip,
+  Menu,
+  MenuItem,
+  ButtonGroup,
 } from '@mui/material';
 import {
   ContentCopy as CopyIcon,
@@ -27,6 +30,7 @@ import {
   HelpOutline as HelpIcon,
   Close as CloseIcon,
   CheckCircleOutline as CompatibleIcon,
+  ArrowDropDown as ArrowDropDownIcon,
 } from '@mui/icons-material';
 import { NineKingsSettings } from './types/settings';
 import { loadSettings, downloadSettings } from './services/settingsService';
@@ -141,6 +145,7 @@ function App() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [helpDialogOpen, setHelpDialogOpen] = useState(false);
   const [, forceUpdate] = useState({});
+  const [downloadMenuAnchorEl, setDownloadMenuAnchorEl] = useState<null | HTMLElement>(null);
 
   // 获取可用的标签页
   const availableTabs = settings
@@ -189,8 +194,29 @@ function App() {
 
   const handleSave = () => {
     if (settings) {
-      downloadSettings(settings, '9KingsSettings.json');
+      downloadSettings(settings, appConfig.paths.defaultSaveFile);
     }
+  };
+
+  const handleDownloadEmpty = () => {
+    const blob = new Blob(['{}'], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = appConfig.paths.defaultSaveFile;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    setDownloadMenuAnchorEl(null);
+  };
+
+  const handleDownloadMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setDownloadMenuAnchorEl(event.currentTarget);
+  };
+
+  const handleDownloadMenuClose = () => {
+    setDownloadMenuAnchorEl(null);
   };
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
@@ -252,9 +278,36 @@ function App() {
           <Button color="inherit" onClick={handleFileClick}>
             {getDefaultTranslation('app.buttons.openConfig')}
           </Button>
-          <Button color="inherit" onClick={handleSave} disabled={!settings}>
-            {getDefaultTranslation('app.buttons.downloadConfig')}
-          </Button>
+          <Box sx={{ width: 6 }} />
+          <ButtonGroup 
+            variant="text" 
+            color="inherit" 
+            sx={{ 
+              '& .MuiButtonGroup-grouped:not(:last-of-type)': {
+                borderColor: 'transparent'
+              }
+            }}
+          >
+            <Button onClick={handleSave} disabled={!settings}>
+              {getDefaultTranslation('app.buttons.downloadConfig')}
+            </Button>
+            <Button
+              size="small"
+              onClick={handleDownloadMenuClick}
+              sx={{ minWidth: '32px', pl: 0, pr: 0 }}
+            >
+              <ArrowDropDownIcon />
+            </Button>
+          </ButtonGroup>
+          <Menu
+            anchorEl={downloadMenuAnchorEl}
+            open={Boolean(downloadMenuAnchorEl)}
+            onClose={handleDownloadMenuClose}
+          >
+            <MenuItem onClick={handleDownloadEmpty}>
+              {getDefaultTranslation('app.buttons.downloadEmptyConfig')}
+            </MenuItem>
+          </Menu>
           <Box sx={{ width: 16 }} />
           <LanguageSelector />
         </Toolbar>

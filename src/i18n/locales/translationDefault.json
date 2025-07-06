@@ -24,6 +24,12 @@
       "ja": "設定を保存",
       "en": "Download Config"
     },
+    "app.buttons.downloadEmptyConfig": {
+      "zh-CN": "下载空白存档",
+      "zh-TW": "下載空白存檔",
+      "ja": "空白保存データを保存",
+      "en": "Download Empty Save"
+    },
     "app.tabs.audio": {
       "zh-CN": "音频",
       "zh-TW": "音訊",
