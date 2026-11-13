@@ -82,6 +82,10 @@ export interface KingSettings {
   Perks: { [key: string]: Perk };
   PerksUsed: PerkUsed[];
   DifficultiesWon: string[];
+  // 9Kings 1.0+
+  PerkUnlockedSlots?: PerkUsed[];
+  SelectedPerkLoadoutIndex?: number;
+  PerkLoadouts?: { PerksUsed: PerkUsed[]; PerkUnlockedSlots: PerkUsed[] }[];
 }
 
 export interface TutorialSettings {
