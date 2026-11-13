@@ -12,8 +12,8 @@ import {
   ListItemText,
   ListItemButton,
 } from '@mui/material';
-import { NineKingsSettings, KingSettings } from '../types/settings';
-import { parseSerializedValue, stringifySerializedValue } from '../services/settingsService';
+import { NineKingsSettings, KingSettings, PerkUsed } from '../types/settings';
+import { parseSerializedValue, stringifySerializedValue, toInt32 } from '../services/settingsService';
 import {
   getDefaultTranslation,
   getKingTranslation,
@@ -202,7 +202,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
           type="number"
           value={king.TotalXP}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleKingChange(kingKey, 'TotalXP', parseInt(e.target.value))
+            handleKingChange(kingKey, 'TotalXP', toInt32(e.target.value, 0))
           }
           sx={{ flex: 1 }}
         />
@@ -211,7 +211,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
           type="number"
           value={king.UnlockedPerksCount}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleKingChange(kingKey, 'UnlockedPerksCount', parseInt(e.target.value))
+            handleKingChange(kingKey, 'UnlockedPerksCount', toInt32(e.target.value, 0))
           }
           sx={{ flex: 1 }}
           slotProps={{ input: { inputProps: { min: 0 } } }}
@@ -237,7 +237,7 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
               type="number"
               value={perk.Level}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handlePerkChange(kingKey, perkName, parseInt(e.target.value))
+                handlePerkChange(kingKey, perkName, toInt32(e.target.value, 0))
               }
               fullWidth
               inputProps={getPerkInputProps(perkName)}
@@ -268,10 +268,32 @@ const KingSettingsEditor: React.FC<KingSettingsEditorProps> = ({ settings, onCha
               type="number"
               value={perk.level}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                const newLevel = parseInt(e.target.value) || 0;
-                const newPerksUsed = [...king.PerksUsed];
-                newPerksUsed[idx] = { ...perk, level: newLevel };
-                handleKingChange(kingKey, 'PerksUsed', newPerksUsed);
+                const newLevel = toInt32(e.target.value, 0);
+                const setLevel = (slots?: PerkUsed[]) =>
+                  slots?.map((s) => (s.x === perk.x && s.y === perk.y ? { ...s, level: newLevel } : s));
+                // 9Kings 1.0 overwrites PerksUsed from the active loadout on load,
+                // so the edit must also go into PerkLoadouts[SelectedPerkLoadoutIndex].
+                const loadoutIdx = king.SelectedPerkLoadoutIndex ?? 0;
+                const loadouts = king.PerkLoadouts?.map((l, i) =>
+                  i === loadoutIdx && l
+                    ? { ...l, PerksUsed: setLevel(l.PerksUsed)!, PerkUnlockedSlots: setLevel(l.PerkUnlockedSlots)! }
+                    : l
+                );
+                onChange({
+                  ...settings,
+                  KingSettingsDictionary: {
+                    ...settings.KingSettingsDictionary,
+                    SerializedValue: stringifySerializedValue({
+                      ...kingSettings,
+                      [kingKey]: {
+                        ...king,
+                        PerksUsed: setLevel(king.PerksUsed)!,
+                        ...(king.PerkUnlockedSlots && { PerkUnlockedSlots: setLevel(king.PerkUnlockedSlots) }),
+                        ...(loadouts && { PerkLoadouts: loadouts }),
+                      },
+                    }),
+                  },
+                });
               }}
               fullWidth
               inputProps={getPerkInputProps(perk.perkTerm)}
